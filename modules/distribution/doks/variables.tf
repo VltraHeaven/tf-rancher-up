@@ -34,6 +34,7 @@ variable "tag_begin" {
 variable "labels" {
   type        = map(string)
   description = "A map of key/value pairs to apply to nodes in the nodepool"
+  default = null
 }
 
 variable "node_pool_count" {
