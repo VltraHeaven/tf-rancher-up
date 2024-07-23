@@ -1,6 +1,4 @@
-data "digitalocean_kubernetes_versions" "doks_versions" {
-  version_prefix = var.kubernetes_version
-}
+data "digitalocean_kubernetes_versions" "latest_kubernetes_version" {}
 
 data "digitalocean_sizes" "droplet_size" {
   filter {

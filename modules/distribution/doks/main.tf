@@ -3,6 +3,7 @@ locals {
   kc_path         = var.kube_config_path != null ? var.kube_config_path : path.cwd
   kc_file         = var.kube_config_filename != null ? "${local.kc_path}/${var.kube_config_filename}" : "${local.kc_path}/${var.prefix}_kube_config.yml"
   kc_file_backup  = "${local.kc_file}.backup"
+  k8s_version     = var.kubernetes_version != null ? var.kubernetes_version : data.digitalocean_kubernetes_versions.latest_kubernetes_version.latest_version
 }
 
 
@@ -10,7 +11,7 @@ resource "digitalocean_kubernetes_cluster" "cluster" {
   name                             = "${var.prefix}-${var.tag_begin}"
   region                           = data.digitalocean_regions.available_region.regions.0.slug
   auto_upgrade                     = var.automatic_upgrades
-  version                          = data.digitalocean_kubernetes_versions.doks_versions.latest_version
+  version                          = local.k8s_version 
   ha                               = var.create_ha_cluster
   surge_upgrade                    = var.enable_surge_upgrades
   destroy_all_associated_resources = var.destroy_digitalocean_resources
@@ -29,6 +30,7 @@ resource "digitalocean_kubernetes_cluster" "cluster" {
     tags       = ["user:${var.user_tag}", "creator:${var.prefix}"]
     labels     = var.labels
   }
+  depends_on = [ var.dependency ]
 }
 
 resource "digitalocean_kubernetes_node_pool" "autoscaling-pool" {

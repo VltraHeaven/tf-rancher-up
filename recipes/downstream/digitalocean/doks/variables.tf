@@ -5,7 +5,7 @@ variable "do_token" {
   sensitive   = true
 }
 
-variable "kubernetes_version" {
+variable "kubernetes_version_prefix" {
   type        = string
   description = "The major and minor release version of the new cluster. A cluster may only be upgraded to newer versions in-place. If the version is decreased, a new resource will be created."
   default     = "1.28"
@@ -121,7 +121,20 @@ variable "destroy_digitalocean_resources" {
   description = "Destroy all associated DigitalOcean resources created via the Kubernetes API when the cluster is destroyed"
 }
 
-variable "dependency" {
-  description = "An optional variable to add a dependency from another resource (not used)"
-  default     = null
+variable "rancher_url" {
+  type        = string
+  description = "Rancher Mangement Server's URL"
+  nullable    = false
+}
+
+variable "rancher_access_key" {
+  type        = string
+  description = "Rancher API Access Key"
+  nullable    = false
+}
+
+variable "rancher_secret_key" {
+  type        = string
+  description = "Rancher API Secret Key"
+  nullable    = false
 }

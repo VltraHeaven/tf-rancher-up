@@ -5,3 +5,7 @@ output "node_pool_droplet_size" {
 output "kubeconfig_file" {
   value = local.kc_file
 }
+
+output "cluster_name" {
+  value = digitalocean_kubernetes_cluster.cluster.name
+}
