@@ -34,7 +34,7 @@ variable "tag_begin" {
 variable "labels" {
   type        = map(string)
   description = "A map of key/value pairs to apply to nodes in the nodepool"
-  default = null
+  default     = null
 }
 
 variable "node_pool_count" {
@@ -116,7 +116,7 @@ variable "kube_config_filename" {
 }
 
 variable "destroy_digitalocean_resources" {
-  type = bool
-  default = true
+  type        = bool
+  default     = true
   description = "Destroy all associated DigitalOcean resources created via the Kubernetes API when the cluster is destroyed"
 }
