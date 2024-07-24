@@ -1,0 +1,31 @@
+# Uncomment and change the values below to suit your individual needs
+
+# DigitalOcean Authentication Token
+# do_token                  = ""
+
+# The major and minor release version of the new cluster. A cluster may only be upgraded to newer versions in-place. If the version is decreased, a new resource will be created.
+# kubernetes_version_prefix = "1.28"
+
+# FirstInitialLastname of user
+# user_tag                  = "user:firstinitalastname"
+
+# Prefix added to names of all resources
+# prefix                    = "terraform-doks-firstinitalastname"
+
+# Number of node pools to create
+# node_pool_count           = 1
+
+# Node Pool's droplet size
+# node_pool_droplet_size    = "g-4vcpu-16gb"
+
+# Target region for cluster deployment
+# region                    = "sfo3"
+
+# Upstream Rancher Management Server's URL
+# rancher_url               = ""
+
+# Rancher API Access Key
+# rancher_access_key        = ""
+
+# Rancher API Secret Key
+# rancher_secret_key        = ""
