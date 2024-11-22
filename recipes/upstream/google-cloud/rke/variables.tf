@@ -68,6 +68,8 @@ variable "ssh_private_key_path" {
 
 # variable "ip_cidr_range" {}
 
+# variable "create_vpc" {}
+
 # variable "vpc" {}
 
 # variable "subnet" {}
@@ -93,7 +95,7 @@ variable "startup_script" {
 
 variable "waiting_time" {
   description = "Waiting time (in seconds)"
-  default     = 180
+  default     = 60
 }
 
 # variable "kubernetes_version" {}
@@ -111,12 +113,25 @@ variable "bootstrap_rancher" {
 
 variable "rancher_hostname" {}
 
+variable "rancher_bootstrap_password" {
+  description = "Password to use when bootstrapping Rancher (min 12 characters)"
+  default     = "initial-bootstrap-password"
+  type        = string
+
+  validation {
+    condition     = length(var.rancher_bootstrap_password) >= 12
+    error_message = "The password provided for Rancher (rancher_bootstrap_password) must be at least 12 characters"
+  }
+}
+
 variable "rancher_password" {
-  type = string
+  description = "Password for the Rancher admin account (min 12 characters)"
+  default     = null
+  type        = string
 
   validation {
     condition     = length(var.rancher_password) >= 12
-    error_message = "The password must be at least 12 characters."
+    error_message = "The password provided for Rancher (rancher_password) must be at least 12 characters"
   }
 }
 
